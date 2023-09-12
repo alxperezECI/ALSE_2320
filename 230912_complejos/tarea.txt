@@ -1,0 +1,21 @@
+Desarrollar un programa de computadoren C/C++ que sea capaz de leer un
+archivo de texto, cuyo path se pasa como parámetro, que contiene una columna
+de números reales que corresponden de forma alternada a la parte real e imaginaria
+de números complejos y hacer lo siguente:
+ - Estos números complejos deberán quedar almacenados para su utilización posterior.
+ - Se debe calcular la norma y el ángulo de cada uno de ellos y almacenarlo en 
+   un vector de doubles.
+ - Se debe calcular el complejo promedio de los complejos leídos.
+ - Como salida el programa deberá mostrar en la pantalla una línea por cada número 
+   complejo de la forma a + bj, la norma y el ángulo, y al final de todo, el 
+   número complejo promedio. 
+ - El cálculo de la norma se debe hacer con una función de la forma:
+   double norma_complejo(double re, double im).
+ - El cálculo de la norma se debe hacer con una función de la forma:
+   double angulo_complejo(double re, double im).
+
+Deben realizar el trabajo por parejas. Cada pareja debe crear un archivo main_xx_yy.cpp 
+donde xx e yy son los ID de cada uno. Deben crear el CMakeLists.txt para el manejo 
+del proyecto que se llama Complejos y el ejecutable se debe llamar cplx.
+
+Una vez terminado, enviar un pull request.
