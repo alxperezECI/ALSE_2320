@@ -1,0 +1,9 @@
+double mcj(complejo c){
+
+
+
+
+}
+bool ordenar (complejo c[], int tam){
+
+}
