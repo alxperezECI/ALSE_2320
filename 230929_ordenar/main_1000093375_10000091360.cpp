@@ -76,7 +76,12 @@ int main(int argc, char** argv){
     double reprom=0;
     double improm=0;
     for (int j=0;j<num;j++){
-        cout<<"El complejo "<<j+1<<" es: "<<vec[j].real<<"+j"<<vec[j].imagi;
+        if (vec[j].imagi<0){
+            cout<<"El complejo "<<j+1<<" es: "<<vec[j].real<<vec[j].imagi<<"j";
+        }
+        else{
+            cout<<"El complejo "<<j+1<<" es: "<<vec[j].real<<"+"<<vec[j].imagi<<"j";            
+        }
         cout<<" | Su Norma es: "<<norma_complejo(vec[j].real,vec[j].imagi);
         cout<<" | Su ángulo es (en rad): "<<angulo_complejo(vec[j].real,vec[j].imagi)<<endl;
         reprom+=vec[j].real;
@@ -88,7 +93,12 @@ int main(int argc, char** argv){
     if (flag==true){
         cout<<"Los complejos ordenados son: "<<endl;
         for (int j=0;j<num;j++){
-            cout<<vec[j].real<<"+j"<<vec[j].imagi<<endl;
+            if (vec[j].imagi<0){
+            cout<<vec[j].real<<vec[j].imagi<<"j"<<endl;
+        }
+        else{
+            cout<<vec[j].real<<"+"<<vec[j].imagi<<"j"<<endl;            
+        }
         }
     }
     else{
