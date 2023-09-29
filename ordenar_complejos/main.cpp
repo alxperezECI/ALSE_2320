@@ -75,26 +75,11 @@ int main(int argc, char **argv)
       }
       i++;
     }
-    printf("-----------------------------------------------------\n");
-    printf("Angulo: %f\n", angulo_complejo(veccplx[0]));
-    printf("Angulo: %f\n", angulo_complejo(veccplx[1]));
-    printf("Angulo: %f\n", angulo_complejo(veccplx[2]));
-    printf("Angulo: %f\n", angulo_complejo(veccplx[3]));
-    printf("Angulo: %f\n", angulo_complejo(veccplx[4]));
-    printf("--------------------------------------------------------\n");
 
     complejo temp;
     int j = 0;
     int k = 0;
     ordenar(veccplx, temp, j, k, i);
-
-    printf("-----------------------------------------------------\n");
-    printf("Angulo: %f\n", angulo_complejo(veccplx[0]));
-    printf("Angulo: %f\n", angulo_complejo(veccplx[1]));
-    printf("Angulo: %f\n", angulo_complejo(veccplx[2]));
-    printf("Angulo: %f\n", angulo_complejo(veccplx[3]));
-    printf("Angulo: %f\n", angulo_complejo(veccplx[4]));
-    printf("--------------------------------------------------------\n");
 
     int l = 0;
     for (l = 0; l < i / 2; l++)
