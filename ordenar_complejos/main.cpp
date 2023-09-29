@@ -19,6 +19,31 @@ double angulo_complejo(complejo c)
   return atan2(c.img, c.re);
 }
 
+void ordenar(complejo c[], complejo temp, int j, int k, int i)
+{
+  for (j = 0; j < ((i / 2) - 1); j++)
+  {
+    for (k = 0; k < ((i / 2) - 1); k++)
+    {
+      if (angulo_complejo(c[k]) > angulo_complejo(c[(k) + 1]))
+      {
+        temp = c[k];
+        c[k] = c[k + 1];
+        c[k + 1] = temp;
+      }
+      if (angulo_complejo(c[k]) == angulo_complejo(c[k + 1]))
+      {
+        if (norma_complejo(c[k]) > norma_complejo(c[(k) + 1]))
+        {
+          temp = c[k];
+          c[k] = c[k + 1];
+          c[k + 1] = temp;
+        }
+      }
+    }
+  }
+}
+
 int main(int argc, char **argv)
 {
   if (argc < 2)
@@ -51,30 +76,25 @@ int main(int argc, char **argv)
       i++;
     }
     printf("-----------------------------------------------------\n");
+    printf("Angulo: %f\n", angulo_complejo(veccplx[0]));
+    printf("Angulo: %f\n", angulo_complejo(veccplx[1]));
+    printf("Angulo: %f\n", angulo_complejo(veccplx[2]));
+    printf("Angulo: %f\n", angulo_complejo(veccplx[3]));
+    printf("Angulo: %f\n", angulo_complejo(veccplx[4]));
+    printf("--------------------------------------------------------\n");
+
     complejo temp;
     int j = 0;
     int k = 0;
-    for (j = 0; j < ((i / 2) - 1); j++)
-    {
-      for (k = 0; k < ((i / 2) - 1); k++)
-      {
-        if (norma_complejo(veccplx[k]) > norma_complejo(veccplx[(k) + 1]))
-        {
-          temp = veccplx[k];
-          veccplx[k] = veccplx[k + 1];
-          veccplx[k + 1] = temp;
-        }
-        if (norma_complejo(veccplx[k]) == norma_complejo(veccplx[k + 1]))
-        {
-          if (angulo_complejo(veccplx[k]) > angulo_complejo(veccplx[(k) + 1]))
-          {
-            temp = veccplx[k];
-            veccplx[k] = veccplx[k + 1];
-            veccplx[k + 1] = temp;
-          }
-        }
-      }
-    }
+    ordenar(veccplx, temp, j, k, i);
+
+    printf("-----------------------------------------------------\n");
+    printf("Angulo: %f\n", angulo_complejo(veccplx[0]));
+    printf("Angulo: %f\n", angulo_complejo(veccplx[1]));
+    printf("Angulo: %f\n", angulo_complejo(veccplx[2]));
+    printf("Angulo: %f\n", angulo_complejo(veccplx[3]));
+    printf("Angulo: %f\n", angulo_complejo(veccplx[4]));
+    printf("--------------------------------------------------------\n");
 
     int l = 0;
     for (l = 0; l < i / 2; l++)
