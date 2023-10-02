@@ -53,12 +53,11 @@ int main(int argc, char** argv){
     int num=0;
     fclose(archivo);
     archivo = fopen( argv[1], "r" );
-    double a;
     while ( fgets(buff, 255, (FILE*) archivo )){
         if (i%2==0){
-            a=strtod(buff,NULL);
+            vec[num].real(strtod(buff,NULL));
         }else {
-            vec[num]={a,strtod(buff,NULL)};
+            vec[num].imag(strtod(buff,NULL));
             num++;
         }
         i++;
