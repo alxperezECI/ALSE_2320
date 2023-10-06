@@ -15,4 +15,5 @@ public:
   Punto operator/(const double &e)const;
   Punto& operator+=(const Punto &b);
   friend std::ostream& operator<<(std::ostream &out, const Punto &p);
+  
 };
