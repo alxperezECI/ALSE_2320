@@ -75,5 +75,26 @@ int main(int argc, char **argv)
   cout << "El centroide de los puntos cargados es: " << centroide << endl;
   cout << "La distancia del punto test al centroide: " << test.distancia(centroide) << endl;
 
+  /* 231006: Una vez encontrado el centroide y la distancia al punto de test,
+     listar los puntos del archivo que queden inscritos dentro de la circunferencia
+     con centro en test y radio = distancia(test, centroide). El archivo deberá
+     contener al menos 50 puntos diferentes distribuidos uniformemente en el plano
+     XY.
+  */
+  double radio = test.distancia(centroide);
+  cout << "El radio es: " << radio << endl;
+  cout << "Los puntos dentro de la circunferencia son: " << endl;
+
+  for (i = 0; i < vecPuntos.size(); i++)
+  {
+    if (test.distancia(vecPuntos[i]) < radio)
+    {
+      cout << vecPuntos[i] << endl;
+    }
+    else if (test.distancia(vecPuntos[i]) == radio)
+    {
+      cout << vecPuntos[i] << endl;
+    }
+  }
   return 0;
 }
