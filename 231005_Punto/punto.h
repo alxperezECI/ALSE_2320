@@ -1,6 +1,7 @@
 #include <iostream>
 
-class Punto{
+class Punto
+{
   double _x, _y;
 
 public:
@@ -11,5 +12,8 @@ public:
   double Y();
   void X(const double &x);
   void Y(const double &y);
-  friend std::ostream& operator<<(std::ostream &out, const Punto &p);
+  Punto operator+(const Punto &b) const;
+  Punto operator/(const double &e) const;
+  Punto &operator+=(const Punto &b);
+  friend std::ostream &operator<<(std::ostream &out, const Punto &p);
 };
