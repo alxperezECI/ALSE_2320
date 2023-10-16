@@ -44,3 +44,13 @@ Punto Punto::operator/(const double &b)const{
     tmp._y=_y/b;
     return tmp;
 }
+Punto Punto:: operator+=(const Punto &b){
+    _x+=b._x;
+    _y+=b._y;
+    return *this;
+}
+Punto Punto:: operator/=(const double &b){
+    _x/=b;
+    _y/=b;
+    return *this;
+}

@@ -13,4 +13,6 @@ class Punto{
     friend std::ostream& operator<<(std::ostream &out, const Punto &p);
     Punto operator+(const Punto &b)const;
     Punto operator/(const double &b)const;
+    Punto operator+=(const Punto &b);
+    Punto operator/=(const double &b);
 };

@@ -46,15 +46,22 @@ int main(int argc, char** argv){
             dist2=dist;
             index2=i;
         }
-        centroid=centroid+vec[i];
+        centroid+=vec[i];
     }
-    centroid=centroid/vec.size();
+    centroid/=vec.size();
+    double radio=ini.distancia(centroid);
     cout<<"Con respecto a: "<<ini<<endl;
     cout<<"El punto más cercano es: "<<vec[index1]<<endl;
     cout<<"La distancia es: "<<dist1<<" m"<<endl;
     cout<<"El segundo punto más cercano es: "<<vec[index2]<<endl;
-    cout<<"La distancia es: "<<dist2<<" m"<<endl;
+    cout<<"La distancia es: "<<dist2<<" m"<<endl<<endl;
     cout<<"El centroide es: "<<centroid<<endl;
+    cout<<"La distancia al centroide es: "<<radio<<" m"<<endl;
+    for (i=0;i<vec.size();i++){
+        if (centroid.distancia(vec[i])<=radio){
+            cout<<"El punto "<<vec[i]<<" está dentro del radio"<<endl;
+        }
+    }
   }
   return 0;
 }
