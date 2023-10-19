@@ -38,6 +38,25 @@ void Punto::Y(const double &y)
 {
   _y = y;
 }
+Punto Punto::operator+(const Punto &b)const{
+  Punto res;
+  res._x = _x + b._x;
+  res._y = _y + b._y;
+  return res;
+}
+
+Punto Punto::operator/(const double &e)const{
+  Punto res;
+  res._x = _x / e;
+  res._y = _y / e;
+  return res;
+}
+
+Punto& Punto::operator+=(const Punto &b){
+  _x += b._x;
+  _y += b._y;
+  return *this;
+}
 
 std::ostream &operator<<(std::ostream &out, const Punto &p)
 {

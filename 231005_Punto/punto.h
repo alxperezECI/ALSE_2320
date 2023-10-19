@@ -12,8 +12,15 @@ public:
   double Y();
   void X(const double &x);
   void Y(const double &y);
+<<<<<<< HEAD
   Punto operator+(const Punto &b) const;
   Punto operator/(const double &e) const;
   Punto &operator+=(const Punto &b);
   friend std::ostream &operator<<(std::ostream &out, const Punto &p);
+=======
+  Punto operator+(const Punto &b)const;
+  Punto operator/(const double &e)const;
+  Punto& operator+=(const Punto &b);
+  friend std::ostream& operator<<(std::ostream &out, const Punto &p);
+>>>>>>> c8284a7c4a25682ea6e1171e4003799139f05e0f
 };
