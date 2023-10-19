@@ -96,5 +96,7 @@ int main(int argc, char **argv)
       cout << vecPuntos[i] << endl;
     }
   }
+  //--
+
   return 0;
 }
