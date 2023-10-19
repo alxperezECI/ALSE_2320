@@ -96,14 +96,7 @@ int main(int argc, char **argv)
       cout << vecPuntos[i] << endl;
     }
   }
-  //--
+  //--------------------------------------------------------------------------------
 
-
-  /* 231006: Una vez encontrado el centroide y la distancia al punto de test, 
-     listar los puntos del archivo que queden inscritos dentro de la circunferencia
-     con centro en test y radio = distancia(test, centroide). El archivo deberá 
-     contener al menos 50 puntos diferentes distribuidos uniformemente en el plano
-     XY.
-  */
   return 0;
 }
