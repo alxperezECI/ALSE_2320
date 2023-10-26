@@ -51,7 +51,8 @@ int main(int argc, char** argv){
             default:
                 break;
             }
-			vFig.push_back( pG );
+       	vFig.push_back( pG );
+
         }
         cout << vFig.size() << endl;
         archivo.close();
