@@ -16,6 +16,7 @@ public:
     float area();
     float perimetro();
     std::string queSoy();
+    friend ostream& operator<<(ostream& stream, Circulo& c);
 private:
     Circulo();
     float _radio;
