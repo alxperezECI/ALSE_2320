@@ -61,7 +61,12 @@ int main(int argc, char **argv)
             default:
                 break;
             }
+<<<<<<< HEAD
             vFig.push_back(pG);
+=======
+       	vFig.push_back( pG );
+
+>>>>>>> refs/remotes/origin/main
         }
         cout << vFig.size() << endl;
         archivo.close();
