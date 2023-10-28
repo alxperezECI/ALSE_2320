@@ -4,16 +4,17 @@
 
 Alumnos::Alumnos()
 {
-    _calif1 = _calif2 = _calif3 = _calif4 = _calif5 = 0.;
+    _codigoalumno = _calif1 = _calif2 = _calif3 = _calif4 = _calif5 = 0.;
 }
 
-Alumnos::Alumnos(double calif1, double calif2, double calif3, double calif4, double calif5)
+Alumnos::Alumnos(int codigoalumno, double calif1, double calif2, double calif3, double calif4, double calif5)
 {
     _calif1 = calif1;
     _calif2 = calif2;
     _calif3 = calif3;
     _calif4 = calif4;
     _calif5 = calif5;
+    _codigoalumno = codigoalumno;
 }
 
 double Alumnos::calif1()
@@ -41,6 +42,11 @@ double Alumnos::calif5()
     return _calif5;
 }
 
+int Alumnos::codigoalumno()
+{
+    return _codigoalumno;
+}
+
 void Alumnos::calif1(const double &calif1)
 {
     _calif1 = calif1;
@@ -65,6 +71,11 @@ void Alumnos::calif5(const double &calif5)
     _calif5 = calif5;
 }
 
+void Alumnos::codigoalumno(const int &codigoalumno)
+{
+    _codigoalumno = codigoalumno;
+}
+
 Alumnos Alumnos::operator+(const Alumnos &b) const
 {
     Alumnos res;
@@ -76,6 +87,17 @@ Alumnos Alumnos::operator+(const Alumnos &b) const
     return res;
 }
 
+Alumnos Alumnos::operator/(const double &e) const
+{
+    Alumnos res;
+    res._calif1 = _calif1 / e;
+    res._calif2 = _calif2 / e;
+    res._calif3 = _calif3 / e;
+    res._calif4 = _calif4 / e;
+    res._calif5 = _calif5 / e;
+    return res;
+}
+
 Alumnos &Alumnos::operator+=(const Alumnos &b)
 {
     _calif1 += b._calif1;
@@ -84,6 +106,16 @@ Alumnos &Alumnos::operator+=(const Alumnos &b)
     _calif4 += b._calif4;
     _calif5 += b._calif5;
     return *this;
+}
+
+double Alumnos::calcularPromedio() const
+{
+    return (_calif1 + _calif2 + _calif3 + _calif4 + _calif5) / 5.0;
+}
+
+int Alumnos::getcodigoalumno() const
+{
+    return _codigoalumno;
 }
 
 std::ostream &operator<<(std::ostream &out, const Alumnos &p)
