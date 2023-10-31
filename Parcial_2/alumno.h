@@ -20,6 +20,7 @@ public:
     float PromedioEstudiante(string path);
     float PromedioCurso(const vector<float> Promedio);
     int getCodigo();
+    long getCodigo(string path);
     void setCodigo(int codigo);
     float getNota(int i);
     void setNota(float nota1, float nota2, float nota3, float nota4, float nota5);
