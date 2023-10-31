@@ -7,10 +7,12 @@ float Alumno::PromedioEstudiante(string path)
 {
     float promedio = 0;
     size_t posicion = 0;
-    for (int i = 1; i < 5; i++)
+    posicion = path.find(" ");
+    for (int i = 0; i < 5; i++)
     {
-        posicion = path.find(" ");
-        promedio += atof(path.substr(i, posicion).c_str());
+        size_t siguiente_posicion = path.find(" ", posicion + 1);
+        promedio += atof(path.substr(posicion + 1, siguiente_posicion - posicion - 1).c_str());
+        posicion = siguiente_posicion;
     }
     promedio /= 5;
     return promedio;
@@ -19,12 +21,22 @@ float Alumno::PromedioEstudiante(string path)
 float Alumno::PromedioCurso(const vector<float> promedio)
 {
     float promediocurso = 0;
-    for (int i = 0; i < promedio.size(); i++) // mirar
+    for (int i = 0; i < promedio.size(); i++)
     {
         promediocurso += promedio[i];
     }
     promediocurso /= promedio.size();
     return promediocurso;
+}
+
+int Alumno::getCodigo()
+{
+    return 0;
+}
+
+long Alumno::getCodigo(string path)
+{
+    return atol(path.substr(0, path.find(" ")).c_str());
 }
 
 Alumno::Alumno(string path)
