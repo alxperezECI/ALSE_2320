@@ -27,6 +27,14 @@ int main() {
    void *t1 = (void*)& number;
    float *t2 = (float*) t1;
    cout << *t2 << endl;
+
+   return 0;
+
+   //i want a for loop to prin a list from 1 to 10
+
+   for (int i = 0; i < 10; i++){
+      cout << i << endl;
+   }
 }
 
 
