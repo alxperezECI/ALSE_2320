@@ -31,8 +31,7 @@ int main(int argc, char *argv[])
 
     // first table for workers information
     sqlstr = "CREATE TABLE IF NOT EXISTS trabajadores (NOMBRE TEXT NOT NULL,"
-             "APELLIDO TEXT NOT NULL, CEDULA INTEGER PRIMARY KEY NOT NULL,"
-             "HORAS_TOTALES INTEGER)";
+             "APELLIDO TEXT NOT NULL, CEDULA INTEGER PRIMARY KEY NOT NULL)";
     /* Execute SQL statement */
     rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
     // create table
