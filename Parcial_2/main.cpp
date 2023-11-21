@@ -13,7 +13,7 @@ int main(int argc, char **argv)
         cout << "junto con las coordenadas de consulta.\n"
              << endl;
         return 1;
-    }
+    }  
 
     cout << "Se abrirá el archivo: " << argv[1] << endl;
 
