@@ -1,6 +1,8 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <stdlib.h>
+#include <ostream>
+#include <iostream>
 #include <sqlite3.h>
 #include <string>
 #include <ctime>
@@ -26,38 +28,52 @@ int main(int argc, char *argv[])
         fprintf(stdout, "Base de datos abierta correctamente\n");
     }
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 1; i < 6; i++)
+    {
+        if (i == 1)
+        {
+            sqlstr = "CREATE TABLE IF NOT EXISTS viento (Promedio REAL NOT NULL,"
+                     "Maximo REAL NOT NULL, Minimo REAL NOT NULL);";
+        }
+        else if (i == 2)
+        {
+            sqlstr = "CREATE TABLE IF NOT EXISTS humedad (Promedio REAL NOT NULL,"
+                     "Maximo REAL NOT NULL, Minimo REAL NOT NULL);";
+        }
+        else if (i == 3)
+        {
+            sqlstr = "CREATE TABLE IF NOT EXISTS luz (Promedio REAL NOT NULL,"
+                     "Maximo REAL NOT NULL, Minimo REAL NOT NULL);";
+        }
+        else if (i == 4)
+        {
+            sqlstr = "CREATE TABLE IF NOT EXISTS precipitacion (Promedio REAL NOT NULL,"
+                     "Maximo REAL NOT NULL, Minimo REAL NOT NULL);";
+        }
+        else if (i == 5)
+        {
+            sqlstr = "CREATE TABLE IF NOT EXISTS temperatura (Promedio REAL NOT NULL,"
+                     "Maximo REAL NOT NULL, Minimo REAL NOT NULL);";
+        }
+        else if (i == 6)
+        {
+            sqlstr = "CREATE TABLE IF NOT EXISTS velocidad (Promedio REAL NOT NULL,"
+                     "Maximo REAL NOT NULL, Minimo REAL NOT NULL);";
+        }
 
         rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
 
-    if (rc != SQLITE_OK)
-    {
-        fprintf(stderr, "SQL error: %s\n", zErrMsg);
-        sqlite3_free(zErrMsg);
-        return (2);
+        if (rc != SQLITE_OK)
+        {
+            fprintf(stderr, "SQL error: %s\n", zErrMsg);
+            sqlite3_free(zErrMsg);
+            return (3);
+        }
+        else
+        {
+            cout << "la tabla " << i << " ha sido creada" << endl;
+        }
     }
-    else
-    {
-        fprintf(stdout, "Table created successfully\n");
-    }
-
-    sqlstr = "CREATE TABLE IF NOT EXISTS sensor (id_medida INTEGER PRIMARY KEY NOT NULL,"
-             "Temperatura REAL NOT NULL, Humedad REAL NOT NULL,"
-             "Fecha TEXT NOT NULL );";
-
-    rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
-
-    if (rc != SQLITE_OK)
-    {
-        fprintf(stderr, "SQL error: %s\n", zErrMsg);
-        sqlite3_free(zErrMsg);
-        return (3);
-    }
-    else
-    {
-        fprintf(stdout, "Table created successfully\n");
-    }
-
     sqlite3_close(db);
     return 0;
 }

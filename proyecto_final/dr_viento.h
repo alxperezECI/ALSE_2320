@@ -1,9 +1,14 @@
-#include <iostream>
+#ifndef VIENTO_H
+#define VIENTO_H
 
 class dr_viento
 {
-    double _x;
-
 public:
-    // clase que simula un sensor, permite crear datos simulados
+    Sensor();
+    double leerDato();
+
+private:
+    double dato;
 };
+
+#endif
