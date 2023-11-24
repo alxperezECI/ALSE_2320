@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
         fprintf(stdout, "Base de datos abierta correctamente\n");
     }
 
-    for (int i = 1; i < 6; i++)
+    for (int i = 1; i < 6; i++) // creación tablas
     {
         if (i == 1)
         {
