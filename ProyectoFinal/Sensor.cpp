@@ -1,51 +1,56 @@
 #include "Sensor.h"
 
 void Sensor::setdato(int dat) {
-
+    _dato.push_back(dat);
 }
 
-/**
- * @return int
- */
-int Sensor::getdato() {
-    return 0;
+std::vector<int> Sensor::getdato() {
+    return _dato;
 }
 
-/**
- * @return float
- */
+
 float Sensor::getprom() {
-    return 0.0;
+    for (int i = 0; i < _dato.size(); i++) {
+        _prom += _dato[i];
+    }
+    return _prom / _dato.size();
 }
 
-/**
- * @return int
- */
 int Sensor::getmin() {
-    return 0;
+    _min = _dato[0];
+    for (int i = 0; i < _dato.size(); i++) {
+        if (_dato[i] < _min) {
+            _min = _dato[i];
+        }
+    }
+    return _min;
 }
 
-/**
- * @return int
- */
+
 int Sensor::getmax() {
-    return 0;
+    _max = _dato[0];
+    for (int i = 0; i < _dato.size(); i++) {
+        if (_dato[i] > _max) {
+            _max = _dato[i];
+        }
+    }
+    return _max;
 }
 
-void Sensor::Sensor() {
-
+Sensor::Sensor() {
+    _muestreo = 0;
+    _prom = 0;
+    _min = 0;   
+    _max = 0;
 }
 
-/**
- * @param a
- */
-void Sensor::Sensor(int a) {
-
+Sensor::Sensor(int a) {
+    _muestreo = a;
+    _prom = 0;
+    _min = 0;   
+    _max = 0;
 }
 
-/**
- * @param a
- */
 void Sensor::setmues(int a) {
-
+    _muestreo = a;
 }

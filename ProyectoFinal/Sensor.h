@@ -8,7 +8,7 @@ public:
     
 virtual void setdato(int dat);
     
-int getdato();
+std::vector<int> getdato();
     
 float getprom();
     
