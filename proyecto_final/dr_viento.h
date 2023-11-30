@@ -1,14 +1,12 @@
-#ifndef VIENTO_H
-#define VIENTO_H
+#ifndef DR_VIENTO_H
+#define DR_VIENTO_H
 
-class dr_viento
+#include "sensor.h"
+
+class dr_viento : public Sensor
 {
 public:
-    Sensor();
-    double leerDato();
-
-private:
-    double dato;
+    virtual int generarDato();
 };
 
 #endif

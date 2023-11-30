@@ -1,8 +1,12 @@
-#include <iostream>
+#ifndef HUMEDAD_H
+#define HUMEDAD_H
 
-class humedad
+#include "sensor.h"
+
+class humedad : public Sensor
 {
-    int _x;
-
 public:
+    virtual int generarDato();
 };
+
+#endif

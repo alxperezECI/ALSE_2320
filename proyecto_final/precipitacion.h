@@ -1,8 +1,12 @@
-#include <iostream>
+#ifndef PRECIPITACION_H
+#define PRECIPITACION_H
 
-class precipitacion
+#include "sensor.h"
+
+class precipitacion : public Sensor
 {
-    double _x;
-
 public:
+    virtual int generarDato();
 };
+
+#endif

@@ -1,8 +1,12 @@
-#include <iostream>
+#ifndef INT_LUZ_H
+#define INT_LUZ_H
 
-class int_luz
+#include "sensor.h"
+
+class int_luz : public Sensor
 {
-    double _x;
-
 public:
+    virtual int generarDato();
 };
+
+#endif

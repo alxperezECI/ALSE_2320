@@ -1,8 +1,12 @@
-#include <iostream>
+#ifndef TEMPERATURA_H
+#define TEMPERATURA_H
 
-class temperatura
+#include "sensor.h"
+
+class temperatura : public Sensor
 {
-    double _x;
-
 public:
+    virtual int generarDato();
 };
+
+#endif

@@ -1,8 +1,12 @@
-#include <iostream>
+#ifndef VELOCIDAD_H
+#define VELOCIDAD_H
 
-class velocidad
+#include "sensor.h"
+
+class velocidad : public Sensor
 {
-    double _x;
-
 public:
+    virtual int generarDato();
 };
+
+#endif

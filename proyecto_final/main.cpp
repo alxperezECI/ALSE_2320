@@ -1,79 +1,38 @@
-#include <cstdlib>
-#include <stdio.h>
-#include <stdlib.h>
-#include <ostream>
 #include <iostream>
-#include <sqlite3.h>
-#include <string>
-#include <ctime>
+#include "dr_viento.h"
+#include "humedad.h"
+#include "precipitacion.h"
+#include "int_luz.h"
+#include "temperatura.h"
+#include "velocidad.h"
 
 using namespace std;
-
-int main(int argc, char *argv[])
+int main()
 {
-    sqlite3 *db;
-    char *zErrMsg = 0;
-    int rc;
-    string sqlstr;
+    dr_viento Sensorviento;
+    humedad Sensorhumedad;
+    int_luz Sensorluz;
+    precipitacion Sensorprecipitacion;
+    temperatura Sensortemperatura;
+    velocidad Sensorvelocidad;
 
-    rc = sqlite3_open("db_sensores", &db); // nombre base de datos
+    int datoviento = Sensorviento.generarDato();
+    cout << "Dato generado por dr_viento: " << datoviento << "° Norte" << endl;
 
-    if (rc != 0)
-    {
-        fprintf(stderr, "No se puede abrir la base de datos: %s\n", sqlite3_errmsg(db));
-        return (1);
-    }
-    else
-    {
-        fprintf(stdout, "Base de datos abierta correctamente\n");
-    }
+    int datohumedad = Sensorhumedad.generarDato();
+    cout << "Dato generado por humedad: " << datohumedad << " %" << endl;
 
-    for (int i = 1; i < 6; i++) // creación tablas
-    {
-        if (i == 1)
-        {
-            sqlstr = "CREATE TABLE IF NOT EXISTS viento (Promedio REAL NOT NULL,"
-                     "Maximo REAL NOT NULL, Minimo REAL NOT NULL);";
-        }
-        else if (i == 2)
-        {
-            sqlstr = "CREATE TABLE IF NOT EXISTS humedad (Promedio REAL NOT NULL,"
-                     "Maximo REAL NOT NULL, Minimo REAL NOT NULL);";
-        }
-        else if (i == 3)
-        {
-            sqlstr = "CREATE TABLE IF NOT EXISTS luz (Promedio REAL NOT NULL,"
-                     "Maximo REAL NOT NULL, Minimo REAL NOT NULL);";
-        }
-        else if (i == 4)
-        {
-            sqlstr = "CREATE TABLE IF NOT EXISTS precipitacion (Promedio REAL NOT NULL,"
-                     "Maximo REAL NOT NULL, Minimo REAL NOT NULL);";
-        }
-        else if (i == 5)
-        {
-            sqlstr = "CREATE TABLE IF NOT EXISTS temperatura (Promedio REAL NOT NULL,"
-                     "Maximo REAL NOT NULL, Minimo REAL NOT NULL);";
-        }
-        else if (i == 6)
-        {
-            sqlstr = "CREATE TABLE IF NOT EXISTS velocidad (Promedio REAL NOT NULL,"
-                     "Maximo REAL NOT NULL, Minimo REAL NOT NULL);";
-        }
+    int datoluz = Sensorluz.generarDato();
+    cout << "Dato generado por int_luz: " << datoluz << " Lumen" << endl;
 
-        rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
+    int datoprecipitacion = Sensorprecipitacion.generarDato();
+    cout << "Dato generado por precipitacion: " << datoprecipitacion << " mm" << endl;
 
-        if (rc != SQLITE_OK)
-        {
-            fprintf(stderr, "SQL error: %s\n", zErrMsg);
-            sqlite3_free(zErrMsg);
-            return (3);
-        }
-        else
-        {
-            cout << "la tabla " << i << " ha sido creada" << endl;
-        }
-    }
-    sqlite3_close(db);
+    int datotemperatura = Sensortemperatura.generarDato();
+    cout << "Dato generado por temperatura: " << datotemperatura << "° C" << endl;
+
+    int datovelocidad = Sensorvelocidad.generarDato();
+    cout << "Dato generado por velocidad: " << datovelocidad << " m/s" << endl;
+
     return 0;
 }
