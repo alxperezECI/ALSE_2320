@@ -11,6 +11,7 @@ public:
     ~DBSensores();
 
     int createTables();
+    int insert(int datoviento, int datohumedad, int datoluz, int datoprecipitacion, int datotemperatura, int datovelocidad);
 
 private:
     sqlite3 *db;

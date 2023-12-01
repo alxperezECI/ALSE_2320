@@ -71,7 +71,7 @@ int DBSensores::createTables()
 
         if (rc != SQLITE_OK)
         {
-            fprintf(stderr, "SQL error: %s\n", zErrMsg);
+            fprintf(stderr, "SQLcreate error: %s\n", zErrMsg);
             sqlite3_free(zErrMsg);
             return 2;
         }
@@ -82,5 +82,31 @@ int DBSensores::createTables()
     }
     sqlite3_close(db);
 
+    return 0;
+}
+
+using namespace std;
+int DBSensores::insert(int datoviento, int datohumedad, int datoluz, int datoprecipitacion, int datotemperatura, int datovelocidad)
+{
+    char *zErrMsg = 0;
+    int rc;
+    string sqlstr;
+    sqlstr = "INSERT INTO Datos (dr_viento, humedad, int_luz, precipitacion, temperatura, velocidad) "
+             "VALUES (" +
+             std::to_string(datoviento) + ", " + std::to_string(datohumedad) + ", " + std::to_string(datoluz) + ", " + std::to_string(datoprecipitacion) + ", " + std::to_string(datotemperatura) + ", " + std::to_string(datovelocidad) + ");";
+
+    rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
+
+    if (rc != SQLITE_OK)
+    {
+        fprintf(stderr, "SQLinsert error: %s\n", zErrMsg);
+        sqlite3_free(zErrMsg);
+    }
+    else
+    {
+        fprintf(stdout, "Registros insertados correctamente\n");
+    }
+
+    sqlite3_close(db);
     return 0;
 }
