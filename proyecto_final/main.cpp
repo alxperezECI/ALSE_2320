@@ -5,9 +5,10 @@
 #include "int_luz.h"
 #include "temperatura.h"
 #include "velocidad.h"
+#include "db_sensores.h"
 
 using namespace std;
-int main()
+int main(int argc, char **argv)
 {
     dr_viento Sensorviento;
     humedad Sensorhumedad;
@@ -33,6 +34,17 @@ int main()
 
     int datovelocidad = Sensorvelocidad.generarDato();
     cout << "Dato generado por velocidad: " << datovelocidad << " m/s" << endl;
+
+    if (argc != 2)
+    {
+        cerr << "Uso: " << argv[0] << " <path_de_base_de_datos>" << endl;
+        return 1;
+    }
+
+    string dbPath(argv[1]);
+    DBSensores dbSensores(dbPath);
+
+    dbSensores.createTables();
 
     return 0;
 }
