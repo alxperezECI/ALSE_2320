@@ -1,8 +1,3 @@
-/**
- * Project Untitled
- */
-
-
 #ifndef _VIENTO_H
 #define _VIENTO_H
 
@@ -12,12 +7,11 @@
 class Viento: public Sensor {
 public: 
     
-void Viento();
+Viento();
     
-/**
- * @param in
- */
-void setdato(dat in);
+void setdato();
+
+~Viento();
 };
 
 #endif //_VIENTO_H

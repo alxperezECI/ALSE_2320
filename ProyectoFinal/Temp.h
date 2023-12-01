@@ -1,7 +1,3 @@
-/**
- * Project Untitled
- */
-
 
 #ifndef _TEMP_H
 #define _TEMP_H
@@ -12,12 +8,10 @@
 class Temp: public Sensor {
 public: 
     
-void Temp();
-    
-/**
- * @param int
- */
-void setdato(dat int);
+Temp();
+
+void setdato();
+~Temp();
 };
 
 #endif //_TEMP_H

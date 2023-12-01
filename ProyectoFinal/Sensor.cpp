@@ -1,7 +1,6 @@
 #include "Sensor.h"
 
-void Sensor::setdato(int dat) {
-    _dato.push_back(dat);
+void Sensor::setdato() {
 }
 
 std::vector<int> Sensor::getdato() {
@@ -13,7 +12,7 @@ float Sensor::getprom() {
     for (int i = 0; i < _dato.size(); i++) {
         _prom += _dato[i];
     }
-    return _prom / _dato.size();
+    return _prom/_dato.size();
 }
 
 int Sensor::getmin() {
@@ -38,19 +37,11 @@ int Sensor::getmax() {
 }
 
 Sensor::Sensor() {
-    _muestreo = 0;
     _prom = 0;
     _min = 0;   
     _max = 0;
 }
 
-Sensor::Sensor(int a) {
-    _muestreo = a;
-    _prom = 0;
-    _min = 0;   
-    _max = 0;
-}
 
-void Sensor::setmues(int a) {
-    _muestreo = a;
+Sensor::~Sensor() {;
 }

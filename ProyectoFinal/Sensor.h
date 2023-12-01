@@ -3,10 +3,19 @@
 
 #include<vector>
 
+enum sensor{
+    humedades=1,
+    luces,
+    temperaturas,
+    lluvias,
+    vientos,
+    velocidades
+};
+
 class Sensor {
 public: 
     
-virtual void setdato(int dat);
+virtual void setdato();
     
 std::vector<int> getdato();
     
@@ -18,15 +27,9 @@ int getmax();
     
 Sensor();
 
-Sensor(int a);
-    
-
-void setmues(int a);
-
 virtual ~Sensor();
 protected: 
     std::vector<int> _dato;
-    int _muestreo;
     float _prom;
     int _min;
     int _max;

@@ -1,23 +1,16 @@
-/**
- * Project Untitled
- */
-
-
 #ifndef _LLUVIA_H
 #define _LLUVIA_H
 
 #include "Sensor.h"
 
 
-class Lluvia: public Lluvia, public Sensor {
+class Lluvia: public Sensor {
 public: 
     
-void Lluvia();
-    
-/**
- * @param in
- */
-void setdato(dat in);
-};
+Lluvia();
 
+void setdato();
+
+~Lluvia();
+};
 #endif //_LLUVIA_H

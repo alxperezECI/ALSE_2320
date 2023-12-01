@@ -1,8 +1,3 @@
-/**
- * Project Untitled
- */
-
-
 #ifndef _VEL_H
 #define _VEL_H
 
@@ -12,12 +7,11 @@
 class Vel: public Sensor {
 public: 
     
-void Vel();
-    
-/**
- * @param in
- */
-void setdato(dat in);
+Vel();
+
+void setdato();
+
+~Vel();
 };
 
 #endif //_VEL_H

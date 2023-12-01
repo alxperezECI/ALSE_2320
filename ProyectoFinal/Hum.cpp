@@ -1,22 +1,15 @@
-/**
- * Project Untitled
- */
-
-
 #include "Hum.h"
+#include <stdlib.h>
+#include <iostream>
 
-/**
- * Hum implementation
- */
-
-
-void Hum::Hum() {
+Hum::Hum() {
 
 }
 
-/**
- * @param in
- */
-void Hum::setdato(dat in) {
+void Hum::setdato() {
+    int dato = rand()%100;
+    _dato.push_back(dato);
+}
 
+Hum::~Hum() {
 }

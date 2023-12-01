@@ -1,22 +1,14 @@
-/**
- * Project Untitled
- */
-
-
 #include "Temp.h"
+#include <stdlib.h>
 
-/**
- * Temp implementation
- */
-
-
-void Temp::Temp() {
+Temp::Temp() {
 
 }
 
-/**
- * @param int
- */
-void Temp::setdato(dat int) {
+void Temp::setdato() {
+    int dato = rand()%45+10;
+    _dato.push_back(dato);
+}
 
+Temp::~Temp() {
 }

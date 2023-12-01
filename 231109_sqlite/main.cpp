@@ -31,7 +31,7 @@ int main(int argc, char** argv){
         cout << "Debe pasar el Nombre, Apellido, # Cédula, Horas extras"<<endl;
         return 1;
     }
-    sqlite3 *db;
+   sqlite3 *db;
    char *zErrMsg = 0;
    int rc;
    string sqlstr;

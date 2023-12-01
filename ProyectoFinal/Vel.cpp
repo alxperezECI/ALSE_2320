@@ -1,22 +1,13 @@
-/**
- * Project Untitled
- */
-
-
 #include "Vel.h"
+#include <stdlib.h>
 
-/**
- * Vel implementation
- */
-
-
-void Vel::Vel() {
-
+Vel::Vel() {
 }
 
-/**
- * @param in
- */
-void Vel::setdato(dat in) {
+void Vel::setdato() {
+    int dato = rand()%40;
+    _dato.push_back(dato);
+}
 
+Vel::~Vel() {
 }

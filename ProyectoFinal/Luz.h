@@ -1,8 +1,3 @@
-/**
- * Project Untitled
- */
-
-
 #ifndef _LUZ_H
 #define _LUZ_H
 
@@ -12,12 +7,10 @@
 class Luz: public Sensor {
 public: 
     
-void Luz();
+Luz();
     
-/**
- * @param in
- */
-void setdato(dat in);
+void setdato();
+~Luz();
 };
 
 #endif //_LUZ_H

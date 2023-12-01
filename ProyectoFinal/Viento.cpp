@@ -1,22 +1,14 @@
-/**
- * Project Untitled
- */
-
-
 #include "Viento.h"
+#include <stdlib.h>
 
-/**
- * Viento implementation
- */
-
-
-void Viento::Viento() {
-
+Viento::Viento() {
 }
 
-/**
- * @param in
- */
-void Viento::setdato(dat in) {
 
+void Viento::setdato() {
+    int dato = rand()%180-180;
+    _dato.push_back(dato);
+}
+
+Viento::~Viento() {
 }

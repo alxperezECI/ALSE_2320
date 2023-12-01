@@ -1,8 +1,3 @@
-/**
- * Project Untitled
- */
-
-
 #ifndef _HUM_H
 #define _HUM_H
 
@@ -12,12 +7,9 @@
 class Hum: public Sensor {
 public: 
     
-void Hum();
-    
-/**
- * @param in
- */
-void setdato(dat in);
+Hum();
+void setdato();
+~Hum();
 };
 
 #endif //_HUM_H

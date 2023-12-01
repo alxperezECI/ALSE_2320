@@ -1,22 +1,17 @@
-/**
- * Project Untitled
- */
-
-
 #include "Lluvia.h"
+#include <stdlib.h>
 
-/**
- * Lluvia implementation
- */
-
-
-void Lluvia::Lluvia() {
+Lluvia::Lluvia() {
 
 }
 
 /**
  * @param in
  */
-void Lluvia::setdato(dat in) {
+void Lluvia::setdato() {
+    int dato = rand()%50;
+    _dato.push_back(dato);
+}
 
+Lluvia::~Lluvia() {
 }

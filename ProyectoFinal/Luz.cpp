@@ -1,22 +1,13 @@
-/**
- * Project Untitled
- */
-
-
 #include "Luz.h"
+#include <stdlib.h>
 
-/**
- * Luz implementation
- */
-
-
-void Luz::Luz() {
-
+Luz::Luz() {
 }
 
-/**
- * @param in
- */
-void Luz::setdato(dat in) {
+void Luz:: setdato(){
+    int dato = rand()%2000;
+    _dato.push_back(dato);
+}
 
+Luz::~Luz() {
 }
