@@ -74,3 +74,16 @@ int main(int argc, char **argv)
 
     return 0;
 }
+
+// DELETE FROM viento;
+// DELETE FROM humedad;
+// DELETE FROM Datos;
+// DELETE FROM velocidad;
+// DELETE FROM precipitacion;
+// DELETE FROM temperatura;
+// DELETE FROM luz;
+
+// COSAS QUE FALTAN/ASPECTOS A MEJORAR
+// mejorar el registro de max, min, prom, cada minuto
+// la hora de los datos no es la correcta
+// Los datos random son todos enteros
