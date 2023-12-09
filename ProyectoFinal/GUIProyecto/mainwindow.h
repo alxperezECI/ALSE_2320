@@ -15,7 +15,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+void changeLedColor(int tem,int hum);
+static int callback( void *data, int argc, char **argv, char **azColName);
+void update_measurements();
+
 private slots:
+void on_Measure_clicked();
 
 private:
     Ui::MainWindow *ui;

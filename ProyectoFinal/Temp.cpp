@@ -6,7 +6,7 @@ Temp::Temp() {
 }
 
 void Temp::setdato() {
-    int dato = rand()%45+10;
+    int dato = rand() % (45 - 10 + 1) + 10;
     _dato.push_back(dato);
 }
 

@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="1" column="0">
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="Measure">
       <property name="text">
        <string>Medir</string>
       </property>
@@ -29,7 +29,7 @@
         <property name="title">
          <string>Lluvia</string>
         </property>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -86,7 +86,7 @@
                <widget class="QLineEdit" name="MaxLluvia"/>
               </item>
               <item>
-               <widget class="QLineEdit" name="linehumedad_4"/>
+               <widget class="QLineEdit" name="MinLluvia"/>
               </item>
              </layout>
             </item>
@@ -101,7 +101,7 @@
         <property name="title">
          <string>Viento</string>
         </property>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget1">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -234,7 +234,7 @@
         <property name="title">
          <string>Luz</string>
         </property>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget2">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -308,7 +308,7 @@
       <property name="title">
        <string>Ambiente</string>
       </property>
-      <widget class="LedIndicator" name="widget" native="true">
+      <widget class="LedIndicator" name="led_hume" native="true">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -318,7 +318,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="LedIndicator" name="widget_2" native="true">
+      <widget class="LedIndicator" name="led_temp" native="true">
        <property name="geometry">
         <rect>
          <x>150</x>
@@ -328,7 +328,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget3">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -382,10 +382,10 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QLineEdit" name="MinTemp"/>
+             <widget class="QLineEdit" name="MaxTemp"/>
             </item>
             <item>
-             <widget class="QLineEdit" name="MaxTemp"/>
+             <widget class="QLineEdit" name="MinTemp"/>
             </item>
            </layout>
           </item>
@@ -393,7 +393,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget4">
        <property name="geometry">
         <rect>
          <x>10</x>

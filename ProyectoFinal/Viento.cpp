@@ -6,7 +6,7 @@ Viento::Viento() {
 
 
 void Viento::setdato() {
-    int dato = rand()%180-180;
+    int dato = rand()%361-180;
     _dato.push_back(dato);
 }
 

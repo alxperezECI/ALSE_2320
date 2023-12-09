@@ -26,7 +26,7 @@ int sql_ini(){
     char *zErrMsg = 0;
     int rc;
     string sqlstr;
-    rc = sqlite3_open("sensores.db", &db);
+    rc = sqlite3_open("../sensores.db", &db);
     if( rc != 0 ) {
       fprintf(stderr, "No se puede abrir la base de datos: %s\n", sqlite3_errmsg(db));
       return(1);
@@ -35,7 +35,7 @@ int sql_ini(){
     }
 
     sqlstr = "CREATE TABLE IF NOT EXISTS humedad (Inde INTEGER NOT NULL, Promedio REAL NOT NULL, Máximo REAL NOT NULL"\
-            ", Mínimo REAL NOT NULL , Fecha TEXT NOT NULL);";
+            ", Mínimo REAL NOT NULL);";
     rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
    
     if( rc != SQLITE_OK ){
@@ -45,7 +45,7 @@ int sql_ini(){
    }
 
    sqlstr = "CREATE TABLE IF NOT EXISTS luz (Inde INTEGER NOT NULL, Promedio REAL NOT NULL, Máximo REAL NOT NULL"\
-            ", Mínimo REAL NOT NULL , Fecha TEXT NOT NULL);";
+            ", Mínimo REAL NOT NULL);";
     rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
    
    if( rc != SQLITE_OK ){
@@ -55,7 +55,7 @@ int sql_ini(){
    }
 
     sqlstr = "CREATE TABLE IF NOT EXISTS temperatura (Inde INTEGER NOT NULL, Promedio REAL NOT NULL, Máximo REAL NOT NULL"\
-                ", Mínimo REAL NOT NULL , Fecha TEXT NOT NULL);";
+                ", Mínimo REAL NOT NULL);";
     rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
    
     if( rc != SQLITE_OK ){
@@ -65,7 +65,7 @@ int sql_ini(){
     }
 
     sqlstr = "CREATE TABLE IF NOT EXISTS lluvia (Inde INTEGER NOT NULL, Promedio REAL NOT NULL, Máximo REAL NOT NULL"\
-                ", Mínimo REAL NOT NULL , Fecha TEXT NOT NULL);";  
+                ", Mínimo REAL NOT NULL);";  
     rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
    
     if( rc != SQLITE_OK ){
@@ -75,7 +75,7 @@ int sql_ini(){
     }
 
     sqlstr = "CREATE TABLE IF NOT EXISTS viento (Inde INTEGER NOT NULL, Promedio REAL NOT NULL, Máximo REAL NOT NULL"\
-                ", Mínimo REAL NOT NULL , Fecha TEXT NOT NULL);";
+                ", Mínimo REAL NOT NULL);";
     rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
    
     if( rc != SQLITE_OK ){
@@ -85,7 +85,15 @@ int sql_ini(){
     }
 
     sqlstr = "CREATE TABLE IF NOT EXISTS velocidad (Inde INTEGER NOT NULL, Promedio REAL NOT NULL, Máximo REAL NOT NULL"\
-                ", Mínimo REAL NOT NULL , Fecha TEXT NOT NULL);";
+                ", Mínimo REAL NOT NULL);";
+    rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
+   
+    if( rc != SQLITE_OK ){
+      fprintf(stderr, "SQL error: %s\n", zErrMsg);
+      sqlite3_free(zErrMsg);
+      return (2);
+    }
+    sqlstr = "CREATE TABLE IF NOT EXISTS Fechas (Fecha TEXT NOT NULL);";
     rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
    
     if( rc != SQLITE_OK ){
@@ -97,12 +105,12 @@ int sql_ini(){
     return 0;
 }
 
-int carga_sqlite(int pro, int max, int min, sensor tipo, string fecha,int index){
+int carga_sqlite(int pro, int max, int min, sensor tipo,int index){
     sqlite3 *db;
     char *zErrMsg = 0;
     int rc;
     stringstream sql;
-    rc = sqlite3_open("sensores.db", &db);
+    rc = sqlite3_open("../sensores.db", &db);
        
     if( rc != 0 ) {
       fprintf(stderr, "No se puede abrir la base de datos: %s\n", sqlite3_errmsg(db));
@@ -110,28 +118,28 @@ int carga_sqlite(int pro, int max, int min, sensor tipo, string fecha,int index)
    }
    switch(tipo){
          case humedades:
-                sql<<"INSERT INTO humedad (Inde, Promedio, Máximo, Mínimo, Fecha) "  \
-              "VALUES ("<<index<<","<<pro<<","<<max<<","<<min<<",'"<<fecha<<"'); ";
+                sql<<"INSERT INTO humedad (Inde, Promedio, Máximo, Mínimo) "  \
+              "VALUES ("<<index<<","<<pro<<","<<max<<","<<min<<"); ";
                 break;
           case luces:
-                sql<<"INSERT INTO luz (Inde, Promedio, Máximo, Mínimo, Fecha) "  \
-              "VALUES ("<<index<<","<<pro<<","<<max<<","<<min<<",'"<<fecha<<"'); ";
+                sql<<"INSERT INTO luz (Inde, Promedio, Máximo, Mínimo) "  \
+              "VALUES ("<<index<<","<<pro<<","<<max<<","<<min<<"); ";
                 break;
           case temperaturas:
-                sql<<"INSERT INTO temperatura (Inde, Promedio, Máximo, Mínimo, Fecha) "  \
-              "VALUES ("<<index<<","<<pro<<","<<max<<","<<min<<",'"<<fecha<<"'); ";
+                sql<<"INSERT INTO temperatura (Inde, Promedio, Máximo, Mínimo) "  \
+              "VALUES ("<<index<<","<<pro<<","<<max<<","<<min<<"); ";
                 break;
           case lluvias:
-                sql<<"INSERT INTO lluvia (Inde, Promedio, Máximo, Mínimo, Fecha) "  \
-              "VALUES ("<<index<<","<<pro<<","<<max<<","<<min<<",'"<<fecha<<"'); ";
+                sql<<"INSERT INTO lluvia (Inde, Promedio, Máximo, Mínimo) "  \
+              "VALUES ("<<index<<","<<pro<<","<<max<<","<<min<<"); ";
                 break;
           case vientos:
-                sql<<"INSERT INTO viento (Inde, Promedio, Máximo, Mínimo, Fecha) "  \
-              "VALUES ("<<index<<","<<pro<<","<<max<<","<<min<<",'"<<fecha<<"'); ";
+                sql<<"INSERT INTO viento (Inde, Promedio, Máximo, Mínimo) "  \
+              "VALUES ("<<index<<","<<pro<<","<<max<<","<<min<<"); ";
                 break;
           case velocidades:
-                sql<<"INSERT INTO velocidad (Inde, Promedio, Máximo, Mínimo, Fecha) "  \
-              "VALUES ("<<index<<","<<pro<<","<<max<<","<<min<<",'"<<fecha<<"'); ";
+                sql<<"INSERT INTO velocidad (Inde, Promedio, Máximo, Mínimo) "  \
+              "VALUES ("<<index<<","<<pro<<","<<max<<","<<min<<"); ";
                 break;
     }
     rc = sqlite3_exec(db, sql.str().c_str(), 0, 0, &zErrMsg);
@@ -151,21 +159,17 @@ int ident(int *inde){
     int rc;
     string sqlstr;
     
-    rc = sqlite3_open("sensores.db", &db);
+    rc = sqlite3_open("../sensores.db", &db);
     if( rc != 0 ) {
       fprintf(stderr, "No se puede abrir la base de datos: %s\n", sqlite3_errmsg(db));
       return(1);
-    } else {
-        fprintf(stdout, "Se abrió correctamente la base de datos\n");
     }
     sqlstr="SELECT Inde FROM humedad ORDER BY Inde DESC LIMIT 1";
     rc = sqlite3_exec(db, sqlstr.c_str(), callback, (void*)inde, &zErrMsg);
     if( rc != SQLITE_OK ) {
       fprintf(stderr, "SQL error: %s\n", zErrMsg);
       sqlite3_free(zErrMsg);
-   } else {
-      fprintf(stdout, "Operación exitosa\n");
-   }
+   } 
     sqlite3_close(db);
     return 0;
 
@@ -176,6 +180,15 @@ int main(int argc, char**argv){
     tm *ltm = localtime(&now);
     stringstream fecha;
     string sqlstr;
+    sqlite3 *db;
+    char *zErrMsg = 0;
+    int rc;
+    rc = sqlite3_open("../sensores.db", &db);
+    if( rc != 0 ) {
+      fprintf(stderr, "No se puede abrir la base de datos: %s\n", sqlite3_errmsg(db));
+      return(1);
+   }
+    srand(time(0));
     if (argc<3){
         cout<<"Debe pasar el nombre de la base de datos y el periodo de adquisión"<<endl;
         return 1;
@@ -190,7 +203,18 @@ int main(int argc, char**argv){
     }
     int i=0; 
     ident(&i);
-    cout<<"Index: "<<i<<endl;
+    fecha<<"INSERT INTO Fechas VALUES ('"<<1900 + ltm->tm_year;
+    fecha<<"-"<<1 + ltm->tm_mon<<"-"<<ltm->tm_mday<<" "<<ltm->tm_hour<<":"<<ltm->tm_min;
+    fecha<< ":"<<ltm->tm_sec<<"');";
+    rc = sqlite3_exec(db, fecha.str().c_str(), 0, 0, &zErrMsg);
+    if( rc != SQLITE_OK ){
+        fprintf(stderr, "SQL error: %s\n", zErrMsg);
+        sqlite3_free(zErrMsg);
+    } else {
+        fprintf(stdout, "Datos añadidos\n");
+    }
+    fecha.str(string());
+    sqlite3_close(db);
     while(true){
         Hum humedad;
         Luz luz;
@@ -210,34 +234,30 @@ int main(int argc, char**argv){
         }
         int prom,maxi,mini;
         i++;
-        fecha<<1900 + ltm->tm_year;
-        fecha<<"-"<<1 + ltm->tm_mon<<"-"<<ltm->tm_mday<<" "<<ltm->tm_hour<<":"<<ltm->tm_min;
-        fecha<< ":"<<ltm->tm_sec;
         prom=humedad.getprom();
         maxi=humedad.getmax();
         mini=humedad.getmin();
-        carga_sqlite(prom,maxi,mini,humedades, fecha.str(),i);
+        carga_sqlite(prom,maxi,mini,humedades,i);
         prom=luz.getprom();
         maxi=luz.getmax();
         mini=luz.getmin();
-        carga_sqlite(prom,maxi,mini,luces, fecha.str(),i);
+        carga_sqlite(prom,maxi,mini,luces,i);
         prom=temperatura.getprom();
         maxi=temperatura.getmax();
         mini=temperatura.getmin();
-        carga_sqlite(prom,maxi,mini,temperaturas, fecha.str(),i);
+        carga_sqlite(prom,maxi,mini,temperaturas,i);
         prom=lluvia.getprom();
         maxi=lluvia.getmax();
         mini=lluvia.getmin();
-        carga_sqlite(prom,maxi,mini,lluvias, fecha.str(),i);
+        carga_sqlite(prom,maxi,mini,lluvias,i);
         prom=viento.getprom();
         maxi=viento.getmax();
         mini=viento.getmin();   
-        carga_sqlite(prom,maxi,mini,vientos, fecha.str(),i);
+        carga_sqlite(prom,maxi,mini,vientos,i);
         prom=velocidad.getprom();
         maxi=velocidad.getmax();
         mini=velocidad.getmin();
-        carga_sqlite(prom,maxi,mini,velocidades, fecha.str(),i);
-        fecha.str(string());
+        carga_sqlite(prom,maxi,mini,velocidades,i);
     }
     return 0;
 
