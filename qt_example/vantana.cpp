@@ -5,10 +5,8 @@
 
 using Eigen::MatrixXd;
 
-
 vantana::vantana(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::vantana)
+    : QMainWindow(parent), ui(new Ui::vantana)
 {
     ui->setupUi(this);
     _tipoDivision = 0;
@@ -20,48 +18,67 @@ vantana::~vantana()
     delete ui;
 }
 
-void vantana::tipoDivi(int tipo, double escalar){
+void vantana::tipoDivi(int tipo, double escalar)
+{
     _escalar = escalar;
     _tipoDivision = tipo;
 }
 
-void vantana::on_cmd_Operacion_clicked(){
-
+void vantana::on_cmd_Operacion_clicked()
+{
     // Construir las matrices A y B con los datos de la interface
-    MatrixXd A(2,2), B(2,2), R(2,2);
-    A(0,0) = ui->txt_A11->text().toDouble();
-    A(0,1) = ui->txt_A12->text().toDouble();
+    MatrixXd A(2, 2), B(2, 2), R(2, 2);
+    A(0, 0) = ui->txt_A11->text().toDouble();
+    A(0, 1) = ui->txt_A12->text().toDouble();
+    A(1, 0) = ui->txt_A21->text().toDouble();
+    A(1, 1) = ui->txt_A22->text().toDouble();
 
-    switch( ui->cbx_Operacion->currentIndex()){
-        case 0: // Suma
-            R = A + B;
+    B(0, 0) = ui->txt_B11->text().toDouble();
+    B(0, 1) = ui->txt_B12->text().toDouble();
+    B(1, 0) = ui->txt_B21->text().toDouble();
+    B(1, 1) = ui->txt_B22->text().toDouble();
+
+    switch (ui->cbx_Operacion->currentIndex())
+    {
+    case 0: // Suma
+        R = A + B;
+        break;
+    case 1: // Resta
+        // ui->txt_A11->setText("-");
+        R = A - B;
+        break;
+    case 2: // Multiplicación
+        // ui->txt_A11->setText("*");
+        R = A * B;
+        break;
+    case 3: // Division
+        // Crear una ventana emergente
+        Divi_diag dialogo;
+        connect(&dialogo, &Divi_diag::senalDivi, this, &vantana::tipoDivi);
+        dialogo.setModal(true);
+        dialogo.show();
+        dialogo.exec();
+        switch (_tipoDivision)
+        {
+        case 0:
+            R = A * B.inverse();
             break;
-        case 1: // Resta
-            ui->txt_A11->setText("-");
+        case 1:
+            R = A.inverse() * B;
             break;
-        case 2: // Multiplicación
-            ui->txt_A11->setText("*");
+        case 2:
+            R = A / _escalar;
             break;
-        case 3:  // Division
-            // Crear una ventana emergente
-            Divi_diag dialogo;
-            connect( &dialogo, &Divi_diag::senalDivi, this, &vantana::tipoDivi );
-            dialogo.setModal(true);
-            dialogo.show();
-            dialogo.exec();
-            switch( _tipoDivision ){
-            case 0:
-                R = A * B.inverse(); break;
-            case 1:
-                R = A.inverse() * B; break;
-            case 2:
-                R = A / _escalar; break;
-            case 3:
-                R = B / _escalar; break;
-            }
+        case 3:
+            R = B / _escalar;
             break;
+        }
+        break;
     }
 
     // Escribir el resultado de la matriz respuesta en la interface.
-    ui->txt_R11->setText( QString::number( R(0,0) ) );
+    ui->txt_R11->setText(QString::number(R(0, 0)));
+    ui->txt_R12->setText(QString::number(R(0, 1)));
+    ui->txt_R21->setText(QString::number(R(1, 0)));
+    ui->txt_R22->setText(QString::number(R(1, 1)));
 }

@@ -2,13 +2,11 @@
  * Project Untitled
  */
 
-
 #include "Triangulo.h"
 
 /**
  * Triangulo implementation
  */
-
 
 /**
  * @param b
@@ -16,46 +14,49 @@
  * @param x
  * @param y
  */
-Triangulo::Triangulo(float b, float h, float x, float y) {
+Triangulo::Triangulo(float b, float h, float x, float y)
+{
     _base = b;
     _altura = h;
-    setX( x );
-    setY( y );
-    setTipo( triangulo );
+    setX(x);
+    setY(y);
+    setTipo(triangulo);
     _area = _perimetro = 0.;
-    _idTipo =  triangulo;
+    _idTipo = triangulo;
 }
 
-Triangulo::Triangulo(string parametros) {
+Triangulo::Triangulo(string parametros)
+{
     size_t posicion = 0;
     size_t pos_ant = 0;
-    posicion = parametros.find( " " );
-    _base = atof(parametros.substr(0,posicion).c_str());
-    pos_ant =  posicion + 1;
-    posicion = parametros.find( " ", pos_ant );
-    _altura = atof(parametros.substr(0,posicion).c_str());
-    pos_ant =  posicion + 1;
-    posicion = parametros.find( " ", pos_ant );
-    setX( atof(parametros.substr(0,posicion).c_str()) );
-    pos_ant =  posicion + 1;
-    posicion = parametros.find( " ", pos_ant );
-    setY( atof(parametros.substr(0,posicion).c_str()) );
-    pos_ant =  posicion + 1;
-    posicion = parametros.find( " ", pos_ant );
-    setAngulo( atof(parametros.substr(0,posicion).c_str()) );
+    posicion = parametros.find(" ");
+    _base = atof(parametros.substr(0, posicion).c_str());
+    pos_ant = posicion + 1;
+    posicion = parametros.find(" ", pos_ant);
+    _altura = atof(parametros.substr(0, posicion).c_str());
+    pos_ant = posicion + 1;
+    posicion = parametros.find(" ", pos_ant);
+    setX(atof(parametros.substr(0, posicion).c_str()));
+    pos_ant = posicion + 1;
+    posicion = parametros.find(" ", pos_ant);
+    setY(atof(parametros.substr(0, posicion).c_str()));
+    pos_ant = posicion + 1;
+    posicion = parametros.find(" ", pos_ant);
+    setAngulo(atof(parametros.substr(0, posicion).c_str()));
     cout << "Triángulo de B: " << _base << ", h: " << _altura << ", Xc: " << _xc << ", Yc: " << _yc << ", Ángulo: " << _angulo << endl;
     _area = _perimetro = 0.;
-    _idTipo =  triangulo;
+    _idTipo = triangulo;
 }
 
-Triangulo::Triangulo() {
-
+Triangulo::Triangulo()
+{
 }
-float Triangulo::area(){
+float Triangulo::area()
+{
     return _base * _altura / 2.;
 }
 
-float Triangulo::perimetro(){
+float Triangulo::perimetro()
+{
     return 3 * _base;
 }
-

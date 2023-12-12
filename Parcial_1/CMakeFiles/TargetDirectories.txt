@@ -1,0 +1,3 @@
+/home/santiago/Projects/ALSE_2320/parcial_1/CMakeFiles/distancia.dir
+/home/santiago/Projects/ALSE_2320/parcial_1/CMakeFiles/edit_cache.dir
+/home/santiago/Projects/ALSE_2320/parcial_1/CMakeFiles/rebuild_cache.dir
