@@ -64,7 +64,7 @@ int DBSensores::createTables()
         {
             sqlstr = "CREATE TABLE IF NOT EXISTS Datos (dr_viento REAL NOT NULL,"
                      "humedad REAL NOT NULL, int_luz REAL NOT NULL, precipitacion REAL NOT NULL,"
-                     "temperatura REAL NOT NULL, velocidad REAL NOT NULL);";
+                     "temperatura REAL NOT NULL, velocidad REAL NOT NULL, fecha TEXT NOT NULL);";
         }
 
         rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
@@ -91,9 +91,10 @@ int DBSensores::insert(int datoviento, int datohumedad, int datoluz, int datopre
     char *zErrMsg = 0;
     int rc;
     string sqlstr;
-    sqlstr = "INSERT INTO Datos (dr_viento, humedad, int_luz, precipitacion, temperatura, velocidad) "
+
+    sqlstr = "INSERT INTO Datos (dr_viento, humedad, int_luz, precipitacion, temperatura, velocidad, fecha) "
              "VALUES (" +
-             to_string(datoviento) + ", " + to_string(datohumedad) + ", " + to_string(datoluz) + ", " + to_string(datoprecipitacion) + ", " + to_string(datotemperatura) + ", " + to_string(datovelocidad) + ");";
+             to_string(datoviento) + ", " + to_string(datohumedad) + ", " + to_string(datoluz) + ", " + to_string(datoprecipitacion) + ", " + to_string(datotemperatura) + ", " + to_string(datovelocidad) + ", datetime('now', 'localtime'));";
 
     rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
 
@@ -120,27 +121,27 @@ int DBSensores::insertPMMF()
     {
         if (o == 1)
         {
-            sqlstr = "INSERT INTO viento (Promedio, Maximo, Minimo, fecha) VALUES ((SELECT AVG(dr_viento) FROM Datos), (SELECT MAX(dr_viento) FROM Datos), (SELECT MIN(dr_viento) FROM Datos), datetime('now'));";
+            sqlstr = "INSERT INTO viento (Promedio, Maximo, Minimo, fecha) VALUES ((SELECT AVG(dr_viento) FROM Datos), (SELECT MAX(dr_viento) FROM Datos), (SELECT MIN(dr_viento) FROM Datos), datetime('now', 'localtime'));";
         }
         else if (o == 2)
         {
-            sqlstr = "INSERT INTO humedad (Promedio, Maximo, Minimo, fecha) VALUES ((SELECT AVG(humedad) FROM Datos), (SELECT MAX(humedad) FROM Datos), (SELECT MIN(humedad) FROM Datos), datetime('now'));";
+            sqlstr = "INSERT INTO humedad (Promedio, Maximo, Minimo, fecha) VALUES ((SELECT AVG(humedad) FROM Datos), (SELECT MAX(humedad) FROM Datos), (SELECT MIN(humedad) FROM Datos), datetime('now', 'localtime'));";
         }
         else if (o == 3)
         {
-            sqlstr = "INSERT INTO luz (Promedio, Maximo, Minimo, fecha) VALUES ((SELECT AVG(int_luz) FROM Datos), (SELECT MAX(int_luz) FROM Datos), (SELECT MIN(int_luz) FROM Datos), datetime('now'));";
+            sqlstr = "INSERT INTO luz (Promedio, Maximo, Minimo, fecha) VALUES ((SELECT AVG(int_luz) FROM Datos), (SELECT MAX(int_luz) FROM Datos), (SELECT MIN(int_luz) FROM Datos), datetime('now','localtime'));";
         }
         else if (o == 4)
         {
-            sqlstr = "INSERT INTO precipitacion (Promedio, Maximo, Minimo, fecha) VALUES ((SELECT AVG(precipitacion) FROM Datos), (SELECT MAX(precipitacion) FROM Datos), (SELECT MIN(precipitacion) FROM Datos), datetime('now'));";
+            sqlstr = "INSERT INTO precipitacion (Promedio, Maximo, Minimo, fecha) VALUES ((SELECT AVG(precipitacion) FROM Datos), (SELECT MAX(precipitacion) FROM Datos), (SELECT MIN(precipitacion) FROM Datos), datetime('now','localtime'));";
         }
         else if (o == 5)
         {
-            sqlstr = "INSERT INTO temperatura (Promedio, Maximo, Minimo, fecha) VALUES ((SELECT AVG(temperatura) FROM Datos), (SELECT MAX(temperatura) FROM Datos), (SELECT MIN(temperatura) FROM Datos), datetime('now'));";
+            sqlstr = "INSERT INTO temperatura (Promedio, Maximo, Minimo, fecha) VALUES ((SELECT AVG(temperatura) FROM Datos), (SELECT MAX(temperatura) FROM Datos), (SELECT MIN(temperatura) FROM Datos), datetime('now','localtime'));";
         }
         else if (o == 6)
         {
-            sqlstr = "INSERT INTO velocidad (Promedio, Maximo, Minimo, fecha) VALUES ((SELECT AVG(velocidad) FROM Datos), (SELECT MAX(velocidad) FROM Datos), (SELECT MIN(velocidad) FROM Datos), datetime('now'));";
+            sqlstr = "INSERT INTO velocidad (Promedio, Maximo, Minimo, fecha) VALUES ((SELECT AVG(velocidad) FROM Datos), (SELECT MAX(velocidad) FROM Datos), (SELECT MIN(velocidad) FROM Datos), datetime('now','localtime'));";
         }
 
         rc = sqlite3_exec(db, sqlstr.c_str(), 0, 0, &zErrMsg);
@@ -157,5 +158,3 @@ int DBSensores::insertPMMF()
     }
     return 0;
 }
-
-// copilot, why the metod insertmax() is not working? I don't know, I'm just a copilot

@@ -15,6 +15,9 @@ int main(int argc, char **argv)
     int pathfr = stoi(argv[2]);
     while (true)
     {
+        string dbPath(argv[1]);
+        DBSensores dbSensores(dbPath);
+
         if (argc != 3)
         {
             cout << "No se ingresó un nombre de base de datos o periodo de toma de datos" << endl;
@@ -52,16 +55,13 @@ int main(int argc, char **argv)
             int datovelocidad = Sensorvelocidad.generarDato();
             cout << "Dato generado por velocidad: " << datovelocidad << " m/s" << endl;
 
-            string dbPath(argv[1]);
-
-            DBSensores dbSensores(dbPath);
             cout << "Tomando datos de los sensores" << endl;
             dbSensores.insert(datoviento, datohumedad, datoluz, datoprecipitacion, datotemperatura, datovelocidad);
 
             int timep = pathfr + timep;
             cout << "el TIME es:" << timep << endl;
 
-            if (timep == 60 + pathfr)
+            if (timep >= 60 + pathfr)
             {
                 dbSensores.insertPMMF();
                 timep = timep - 60;
@@ -74,7 +74,6 @@ int main(int argc, char **argv)
 
     return 0;
 }
-
 // DELETE FROM viento;
 // DELETE FROM humedad;
 // DELETE FROM Datos;
@@ -84,6 +83,6 @@ int main(int argc, char **argv)
 // DELETE FROM luz;
 
 // COSAS QUE FALTAN/ASPECTOS A MEJORAR
+
 // mejorar el registro de max, min, prom, cada minuto
-// la hora de los datos no es la correcta
 // Los datos random son todos enteros
