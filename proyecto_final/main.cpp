@@ -80,8 +80,3 @@ int main(int argc, char **argv)
 // DELETE FROM precipitacion;
 // DELETE FROM temperatura;
 // DELETE FROM luz;
-
-// COSAS QUE FALTAN/ASPECTOS A MEJORAR
-
-// mejorar el registro de max, min, prom, cada minuto
-// Los datos random son todos enteros
