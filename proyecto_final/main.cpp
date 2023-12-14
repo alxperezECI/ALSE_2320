@@ -37,6 +37,8 @@ int main(int argc, char **argv)
             temperatura Sensortemperatura;
             velocidad Sensorvelocidad;
 
+            cout << "Tomando datos de los sensores" << endl;
+
             int datoviento = Sensorviento.generarDato();
             cout << "Dato generado por dr_viento: " << datoviento << "° Norte" << endl;
 
@@ -55,11 +57,9 @@ int main(int argc, char **argv)
             int datovelocidad = Sensorvelocidad.generarDato();
             cout << "Dato generado por velocidad: " << datovelocidad << " m/s" << endl;
 
-            cout << "Tomando datos de los sensores" << endl;
             dbSensores.insert(datoviento, datohumedad, datoluz, datoprecipitacion, datotemperatura, datovelocidad);
 
             int timep = pathfr + timep;
-            cout << "el TIME es:" << timep << endl;
 
             if (timep >= 60 + pathfr)
             {
@@ -67,7 +67,6 @@ int main(int argc, char **argv)
                 timep = timep - 60;
             }
 
-            cout << "el pathfr es:" << pathfr << endl;
             this_thread::sleep_for(chrono::seconds(pathfr));
         }
     }

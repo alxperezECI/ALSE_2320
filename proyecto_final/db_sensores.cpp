@@ -11,10 +11,10 @@ DBSensores::DBSensores(const std::string &path) : db(nullptr), dbPath(path)
         fprintf(stderr, "No se puede abrir la base de datos: %s\n", sqlite3_errmsg(db));
         exit(1);
     }
-    else
-    {
-        fprintf(stdout, "Base de datos abierta correctamente\n");
-    }
+    // else
+    //{
+    //     fprintf(stdout, "Base de datos abierta correctamente\n");
+    // }
 }
 
 DBSensores::~DBSensores()
